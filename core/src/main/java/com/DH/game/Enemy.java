@@ -14,12 +14,12 @@ public class Enemy {
 
     float velocityY;
 
-    public Enemy() {
+    public Enemy(float x, float y) {
         bottom = new Rectangle(0.0f, 0.0f, 192.0f, 220.0f);
         //assuming that the picture is 128x128 pixels
         texture = new Texture("C:/Users/keert/Downloads/trialenemy.jpeg");
         sprite = new Sprite(texture, 0, 0, 192, 220);
-        this.setPosition(0, 0);
+        this.setPosition(x, y);
     }
 
     public int hits(Rectangle r) {
@@ -48,6 +48,10 @@ public class Enemy {
     public void draw(SpriteBatch batch)
     {
         sprite.draw(batch);
+    }
+    public void dispose()
+    {
+        batch.end();
     }
 
 }
