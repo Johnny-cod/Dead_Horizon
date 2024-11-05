@@ -176,6 +176,7 @@ public class Player {
             if(!facingRight){
                 flipSprite();
             }
+           // System.out.println("RIGHT");
         }
     }
 

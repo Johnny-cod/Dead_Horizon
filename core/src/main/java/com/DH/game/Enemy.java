@@ -17,7 +17,7 @@ public class Enemy {
     public Enemy(float x, float y) {
         bottom = new Rectangle(0.0f, 0.0f, 192.0f, 220.0f);
         //assuming that the picture is 128x128 pixels
-        texture = new Texture("C:/Users/keert/Downloads/trialenemy.jpeg");
+        texture = new Texture("libgdx.png");
         sprite = new Sprite(texture, 0, 0, 192, 220);
         this.setPosition(x, y);
     }
