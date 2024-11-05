@@ -68,4 +68,8 @@ public class Enemy {
     {
         sprite.draw(batch);
     }
+    public void dispose() {
+        texture.dispose();
+    }
+
 }
