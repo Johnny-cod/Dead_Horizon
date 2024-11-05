@@ -95,6 +95,7 @@ public class Player {
     private float velocityY;
     private int health;
     private boolean isJumping = false;
+    private boolean facingRight = true;
 
     private final float scale = 3.0f; // Scale factor for all frames
 
@@ -159,7 +160,11 @@ public class Player {
         if (hitbox.x > 0) {
             hitbox.x -= (400 * delta);
             setPosition(hitbox.x, hitbox.y);
+
             currentAnimation = walkAnimation;
+            if(facingRight){
+                flipSprite();
+            }
         }
     }
 
@@ -168,8 +173,12 @@ public class Player {
             hitbox.x += (400 * delta);
             setPosition(hitbox.x, hitbox.y);
             currentAnimation = walkAnimation;
+            if(!facingRight){
+                flipSprite();
+            }
         }
     }
+
 
     public void jump() {
         if (!isJumping) {
@@ -184,6 +193,28 @@ public class Player {
         //stateTime = 0;
     }
 
+    private void flipSprite() {
+        /*for (TextureRegion frame : currentAnimation.getKeyFrames()) {
+            frame.flip(true, false);
+        }
+        facingRight = !facingRight;*/
+            // Flip frames for each animation
+            for (TextureRegion frame : idleAnimation.getKeyFrames()) {
+                frame.flip(true, false);
+            }
+            for (TextureRegion frame : walkAnimation.getKeyFrames()) {
+                frame.flip(true, false);
+            }
+            for (TextureRegion frame : jumpAnimation.getKeyFrames()) {
+                frame.flip(true, false);
+            }
+            for (TextureRegion frame : attackAnimation.getKeyFrames()) {
+                frame.flip(true, false);
+            }
+
+            // Toggle the facing direction
+            facingRight = !facingRight;
+        }
     public void draw(SpriteBatch batch) {
         TextureRegion currentFrame = currentAnimation.getKeyFrame(stateTime, true);
         batch.draw(currentFrame, hitbox.x, hitbox.y, currentFrame.getRegionWidth() * scale, currentFrame.getRegionHeight() * scale);
